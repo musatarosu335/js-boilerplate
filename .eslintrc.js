@@ -1,5 +1,10 @@
 module.exports = {
-  "extends": "airbnb",
+  "extends": [
+    "airbnb",
+    "prettier",
+    "prettier/react"
+  ],
+  plugins: ["prettier"],
   "env": {
     "browser": true
   },
@@ -12,6 +17,15 @@ module.exports = {
       "components": [ "Link" ],
       "specialLink": [ "to" ]
     }],
+    "prettier/prettier": [
+      "error",
+      {
+        trailingComma: "all",
+        singleQuote: true,
+        semi: true,
+        printWidth: 100,
+      },
+    ],
     "react/forbid-prop-types": 0
   }
 };

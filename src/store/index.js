@@ -15,16 +15,15 @@ if (process.env.NODE_ENV !== 'production') {
 middlewares.push(thunk);
 
 // Redux DevToolsの設定
-const composeEnhancers = process.env.NODE_ENV === 'production'
-  ? compose
-  : window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // eslint-disable-line
+const composeEnhancers =
+  process.env.NODE_ENV === 'production'
+    ? compose
+    : window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // eslint-disable-line
 
 const store = createStore(
   rootReducer,
   /* preloadedState, */
-  composeEnhancers(
-    applyMiddleware(...middlewares),
-  ),
+  composeEnhancers(applyMiddleware(...middlewares)),
 );
 
 export default store;

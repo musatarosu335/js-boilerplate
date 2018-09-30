@@ -6,10 +6,8 @@ const publicDir = path.join(__dirname, '/public');
 module.exports = (env, argv) => {
   const IS_DEVELOPMENT = argv.mode === 'development';
 
-  return ({
-    entry: [
-      './src/index.jsx',
-    ],
+  return {
+    entry: ['./src/index.jsx'],
     output: {
       path: publicDir,
       publicPath: '/',
@@ -19,15 +17,14 @@ module.exports = (env, argv) => {
       rules: [
         {
           test: [/\.js$/, /\.jsx$/],
-          use: [{
-            loader: 'babel-loader',
-            options: {
-              presets: [
-                ['@babel/preset-env', { modules: false }],
-                '@babel/preset-react',
-              ],
+          use: [
+            {
+              loader: 'babel-loader',
+              options: {
+                presets: [['@babel/preset-env', { modules: false }], '@babel/preset-react'],
+              },
             },
-          }],
+          ],
           exclude: /node_modules/,
         },
       ],
@@ -45,14 +42,14 @@ module.exports = (env, argv) => {
       minimizer: IS_DEVELOPMENT
         ? []
         : [
-          new UglifyJSPlugin({
-            uglifyOptions: {
-              compress: {
-                drop_console: true,
+            new UglifyJSPlugin({
+              uglifyOptions: {
+                compress: {
+                  drop_console: true,
+                },
               },
-            },
-          }),
-        ],
+            }),
+          ],
     },
-  });
+  };
 };
